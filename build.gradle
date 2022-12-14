@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'com.github.gmazzo.buildconfig' version '3.1.0'
+    id 'com.christophecvb.touchportal.plugin-packager' version '8.3.0'
+}
+
+def mainClassSimpleName = 'TouchPortalRefresher'
+def mainClassPackage = 'com.coryjreid.tprefresher'
+def versionName = '1.0.0'
+group mainClassPackage
+version versionName
+
+tpPlugin.mainClassSimpleName = mainClassSimpleName
+
+buildConfig {
+    packageName = project.group
+
+    buildConfigField 'String', 'NAME', "\"${project.name}\""
+    buildConfigField 'String', 'VERSION_NAME', "\"${versionName}\""
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.christophecvb.touchportal:plugin-sdk:8.3.0'
+    annotationProcessor 'com.christophecvb.touchportal:plugin-sdk-annotations-processor:8.3.0'
+}
