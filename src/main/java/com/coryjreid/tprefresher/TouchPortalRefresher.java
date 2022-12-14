@@ -25,11 +25,12 @@ public class TouchPortalRefresher extends TouchPortalPlugin implements TouchPort
     @State(defaultValue = "-1", categoryId = "TouchPortalRefresherMain")
     @Event(format = "When randomNumber becomes $val")
     private String randomNumber;
+
+    private Thread refresherThread = null;
+
     public TouchPortalRefresher() {
         super(true);
     }
-
-    private Thread refresherThread = null;
 
     @Override
     public void onDisconnected(final Exception exception) {
